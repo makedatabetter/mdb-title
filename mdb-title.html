@@ -17,7 +17,7 @@ Custom property | Description | Default
   <template>
     <style>
        :host {
-        display: block;
+        display: table;
         @apply(--paper-font-common-base);
       }
       
@@ -28,12 +28,14 @@ Custom property | Description | Default
        :host h5,
        :host h6 {
         font-weight: normal;
-        display: inline-block;
+        display: table-cell;
+        vertical-align: middle;
         @apply(--mdb-title);
       }
       
        :host mdb-help-text {
-        display: inline-block;
+        display: table-cell;
+        vertical-align: middle;
       }
     </style>
     <template is="dom-if" if="{{_isLevel(level,1)}}">
