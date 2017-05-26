@@ -20,7 +20,7 @@ Custom property | Description | Default
         display: table;
         @apply(--paper-font-common-base);
       }
-      
+
        :host h1,
        :host h2,
        :host h3,
@@ -32,10 +32,29 @@ Custom property | Description | Default
         vertical-align: middle;
         @apply(--mdb-title);
       }
-      
+
        :host mdb-help-text {
         display: table-cell;
         vertical-align: middle;
+        position: relative;        
+        font-size: 0;
+        --mdb-help-text-font-size: 1rem;
+      }
+
+      :host[level="1"] mdb-help-text, :host[level="2"] mdb-help-text {
+        top: 3px;
+      }
+
+      :host[level="3"] mdb-help-text, :host[level="4"] mdb-help-text {
+        top: 2px;
+      }
+
+      :host[level="5"] mdb-help-text {
+        top: 1px;
+      }
+
+       :host[level="6"] mdb-help-text {
+        top: 0;
       }
     </style>
     <template is="dom-if" if="{{_isLevel(level,1)}}">
@@ -71,7 +90,7 @@ Custom property | Description | Default
     <template is="dom-if" if="{{helpText}}">
       <mdb-help-text help-text="{{helpText}}"></mdb-help-text>
     </template>
-  </template>  
+  </template>
 
   <script>
     Polymer({
@@ -88,6 +107,7 @@ Custom property | Description | Default
         level: {
           type: Number,
           value: 1,
+          reflectToAttribute: true,
           observer: '_validateLevel'
         },
 
